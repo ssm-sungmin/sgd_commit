@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Speaker</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="write_a_num">Write a number (it will be added by 5)</string>
+    <string name="get">Calc</string>
+    <string name="def">0</string>
+
+</resources>
