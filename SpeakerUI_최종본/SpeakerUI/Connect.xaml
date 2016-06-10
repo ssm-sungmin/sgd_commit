@@ -1,0 +1,109 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="SpeakerUI.Connect"
+	x:Name="UserControl"
+	d:DesignWidth="287" d:DesignHeight="370">
+
+	<UserControl.Resources>
+		<Style x:Key="ButtonFocusVisual">
+			<Setter Property="Control.Template">
+				<Setter.Value>
+					<ControlTemplate>
+						<Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,1" StartPoint="0,0">
+			<GradientStop Color="#F3F3F3" Offset="0"/>
+			<GradientStop Color="#EBEBEB" Offset="0.5"/>
+			<GradientStop Color="#DDDDDD" Offset="0.5"/>
+			<GradientStop Color="#CDCDCD" Offset="1"/>
+		</LinearGradientBrush>
+		<SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF707070"/>
+		<Style x:Key="SquareButton" TargetType="{x:Type Button}">
+			<Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+			<Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
+			<Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="Padding" Value="1"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Button}">
+						<Grid HorizontalAlignment="Left" Height="40"  VerticalAlignment="Top" Width="287">
+							<Rectangle x:Name="rectangle" Fill="#59FFFFFF" HorizontalAlignment="Center" Height="40" Stroke="{x:Null}" VerticalAlignment="Top" Width="287" RadiusX="3" RadiusY="3"/>
+							<Label x:Name="label" Content="Connect" HorizontalAlignment="Center" Height="40" VerticalAlignment="Center" Width="260" HorizontalContentAlignment="Center" Padding="5,5,5,0" UseLayoutRounding="False" FontSize="32" VerticalContentAlignment="Center" FlowDirection="LeftToRight" FontFamily="Orator Std" Foreground="#FFBCD0DC" FontWeight="Bold"/>
+						</Grid>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter Property="Fill" TargetName="rectangle" Value="#5971787A"/>
+								<Setter Property="Foreground" TargetName="label" Value="#FF6C8DA0"/>
+							</Trigger>
+							<Trigger Property="IsKeyboardFocused" Value="true"/>
+							<Trigger Property="ToggleButton.IsChecked" Value="true"/>
+							<Trigger Property="IsEnabled" Value="false">
+								<Setter Property="Foreground" Value="#ADADAD"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</UserControl.Resources>
+
+
+	<Grid x:Name="LayoutRoot">
+		<Rectangle HorizontalAlignment="Left" Height="370" StrokeThickness="0" VerticalAlignment="Top" Width="287" OpacityMask="#7FFFFFFF" RadiusX="10" RadiusY="10" Fill="#FFCBCBCB">
+			<Rectangle.Effect>
+				<BlurEffect KernelType="Box" Radius="3"/>
+			</Rectangle.Effect>
+		</Rectangle>
+		<Rectangle HorizontalAlignment="Left" Height="370" StrokeThickness="0" VerticalAlignment="Top" Width="287" OpacityMask="#7FFFFFFF" RadiusX="10" RadiusY="10">
+			<Rectangle.Fill>
+				<ImageBrush ImageSource="light03.jpg" Stretch="UniformToFill"/>
+			</Rectangle.Fill>
+			<Rectangle.Effect>
+				<BlurEffect KernelType="Box" Radius="3"/>
+			</Rectangle.Effect>
+		</Rectangle>
+		<TextBlock HorizontalAlignment="Center" Height="85" TextWrapping="Wrap" Text="모바일 'SPEAKER' 페이지 상단에서 인증 번호를 확인하실 수 있습니다." 
+				VerticalAlignment="Top" Width="287" FontSize="17.333" FontFamily="KoreanRDRR" TextAlignment="Center" Foreground="#FF85A2A4" Padding="10,18,10,0" Background="#4C89909F"/>
+		
+		<TextBlock HorizontalAlignment="Center" Height="25" Margin="0,100,0,0" TextWrapping="Wrap" Text="연결 이름" VerticalAlignment="Top" Width="100" FontSize="20" 
+				FontFamily="KoreanYNSJG3R" TextAlignment="Center" FontWeight="Bold" Foreground="#FFEDE3E9"/>
+		<TextBlock HorizontalAlignment="Center" Height="20" Margin="0,123,0,0" TextWrapping="Wrap" Text="연결에 사용하고 싶은 이름을 입력해 주세요" 
+				VerticalAlignment="Top" Width="250" FontSize="12" FontFamily="KoreanYNSJG3R" TextAlignment="Center" Foreground="#FFDCB0AB"/>
+
+        <TextBox x:Name="DefaultName" Text="Computer" HorizontalAlignment="Center" Height="30" Margin="43.5,138,43.5,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="160" FontSize="16" Background="{x:Null}" BorderThickness="0,0,0,1" TextAlignment="Center" Foreground="#FF81726A" MaxLength="12" Padding="1,1,1,0.5" VerticalContentAlignment="Center" />
+        <TextBox x:Name="ConnectName" HorizontalAlignment="Center" Height="30" Margin="43.5,138,43.5,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="160" FontSize="16" Background="{x:Null}" BorderThickness="0,0,0,1" TextAlignment="Center" Foreground="#FF81726A" MaxLength="12" Padding="1,1,1,0.5" VerticalContentAlignment="Center" TextChanged="name_Changed" >
+			<TextBox.BorderBrush>
+				<LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+					<GradientStop Color="#FFB9B7B0" Offset="0.05"/>
+					<GradientStop Color="#FFE6E2D8" Offset="0.082"/>
+					<GradientStop Color="#FFEFEAE3" Offset="1"/>
+				</LinearGradientBrush>
+			</TextBox.BorderBrush>
+		</TextBox>
+        
+        <TextBlock HorizontalAlignment="Center" Height="25" Margin="0,200,0,0" TextWrapping="Wrap" Text="인증 번호" VerticalAlignment="Top" Width="100" FontSize="20" 
+				FontFamily="KoreanYNSJG3R" TextAlignment="Center" FontWeight="Bold" Foreground="#FFEDE3E9"/>
+		<TextBlock HorizontalAlignment="Center" Height="20" Margin="0,223,0,0" TextWrapping="Wrap" Text="인증 번호 네 자리를 입력해 주세요." 
+				VerticalAlignment="Top" Width="280" FontSize="12" FontFamily="KoreanYNSJG3R" TextAlignment="Center" Foreground="#FFDCB0AB"/>
+		<Grid HorizontalAlignment="Center" Height="40" Margin="0,240,0,0" VerticalAlignment="Top" Width="166">
+            <TextBox x:Name="CertifiNum1" HorizontalAlignment="Left" Height="34" Margin="0,0,0,0" TextWrapping="NoWrap" VerticalAlignment="Center" Width="36" MaxLength="1" KeyDown="keyDown1" TextChanged="textChanged1" TextAlignment="Center" FontFamily="MoeumT R" FontWeight="Bold" FontSize="20" Foreground="#FF463131" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#19FFFAFF" />
+            <TextBox x:Name="CertifiNum2" HorizontalAlignment="Left" Height="34" Margin="45,0,0,0" TextWrapping="NoWrap" VerticalAlignment="Center" Width="34" MaxLength="1" KeyDown="keyDown2" TextChanged="textChanged2" TextAlignment="Center" FontFamily="MoeumT R" FontWeight="Bold" FontSize="20" Foreground="#FF463131" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Background="#19FFFAFF" />
+            <TextBox x:Name="CertifiNum3" HorizontalAlignment="Left" Height="34" Margin="88,0,0,0" TextWrapping="NoWrap" VerticalAlignment="Center" Width="34" MaxLength="1" KeyDown="keyDown3" TextChanged="textChanged3" TextAlignment="Center" FontFamily="MoeumT R" FontWeight="Bold" FontSize="20" Foreground="#FF463131" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Background="#19FFFAFF" />
+            <TextBox x:Name="CertifiNum4" HorizontalAlignment="Left" Height="34" Margin="132,0,0,0" TextWrapping="NoWrap" VerticalAlignment="Center" Width="34" MaxLength="1" KeyDown="keyDown4" TextChanged="textChanged4" TextAlignment="Center" FontFamily="MoeumT R" FontWeight="Bold" FontSize="20" Foreground="#FF463131" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Background="#19FFFAFF" />
+		</Grid>
+		<Button HorizontalAlignment="Center" Height="40" Margin="0,330,0,0" VerticalAlignment="Top" Width="287" Background="{x:Null}" Foreground="White" BorderBrush="{x:Null}" 
+				FontSize="19" FontFamily="KoreanYGYCB" TextOptions.TextFormattingMode="Display" Style="{DynamicResource SquareButton}" Click="connect_Click"/>
+		
+		</Grid>
+</UserControl>
